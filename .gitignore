@@ -1,4 +1,10 @@
-spatial.log
 spatialos_worker_packages.json
+
 build/
+*build.json
+
+*.log
+*.log.*
 logs/
+
+.spatialos

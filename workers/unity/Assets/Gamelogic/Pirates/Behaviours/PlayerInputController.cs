@@ -14,13 +14,24 @@ namespace Assets.Gamelogic.Pirates.Behaviours
          * so this MonoBehaviour will be enabled on the client's designated PlayerShip GameObject only and not on
          * the GameObject of other players' ships.
          */
-        [Require] private ShipControls.Writer ShipControlsWriter;
+        [Require]
+        private ShipControls.Writer ShipControlsWriter;
 
         void Update ()
         {
             ShipControlsWriter.Send(new ShipControls.Update()
                 .SetTargetSpeed(Mathf.Clamp01(Input.GetAxis("Vertical")))
                 .SetTargetSteering(Input.GetAxis("Horizontal")));
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                ShipControlsWriter.Send(new ShipControls.Update().AddFireLeft(new FireLeft()));
+            }
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                ShipControlsWriter.Send(new ShipControls.Update().AddFireRight(new FireRight()));
+            }
         }
     }
 }
